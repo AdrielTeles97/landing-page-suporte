@@ -93,7 +93,7 @@ const NotFound = () => {
           transition={{ delay: 2 }}
           className="mt-8 text-white/30 text-sm"
         >
-          "Até as melhores páginas às vezes tiram um dia de folga..." 🌴
+          Até as melhores páginas às vezes tiram um dia de folga... 🌴
         </motion.p>
       </div>
     </div>

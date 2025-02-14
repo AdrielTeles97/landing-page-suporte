@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { Store, Building, ShoppingBag, Truck } from "lucide-react";
+import { Store, Building, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 

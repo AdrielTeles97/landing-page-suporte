@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -23,7 +22,7 @@ const Footer = () => {
               className="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center gap-1"
             >
               Adriel Teles
-              <span className="text-xs">(Web Developer)</span>
+              <span className="text-xs ordinal">Web Developer</span>
             </Link>
           </div>
         </div>

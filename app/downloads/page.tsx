@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Monitor, ArrowDown, Shield, Headphones, Settings } from 'lucide-react';
+import { Monitor, ArrowDown, Shield, Headphones, Settings } from 'lucide-react';
 import Link from 'next/link';
 
 const DownloadPage = () => {

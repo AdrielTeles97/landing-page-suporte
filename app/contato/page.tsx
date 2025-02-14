@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Clock, MapPin } from 'lucide-react';
+import { Mail, Phone, Clock } from 'lucide-react';
 import Link from 'next/link';
 
 const ContactPage = () => {

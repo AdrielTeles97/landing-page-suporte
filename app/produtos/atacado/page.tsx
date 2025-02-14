@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, CheckCircle2, Store, BarChart3, Users, ShoppingCart, Phone } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const VarejoPage = () => {
   const features = [
@@ -65,10 +66,12 @@ const VarejoPage = () => {
           >
             <div className="aspect-video bg-zinc-800 rounded-xl">
               {/* Aqui você pode adicionar um vídeo ou imagem do sistema */}
-              <img 
+              <Image
                 src="/api/placeholder/1920/1080" 
                 alt="Sistema em ação" 
                 className="w-full h-full object-cover"
+                width={1920}
+                height={1080}
               />
             </div>
           </motion.div>

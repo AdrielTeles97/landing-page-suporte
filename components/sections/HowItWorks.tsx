@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { LampContainer } from "@/components/ui/lamp-effect";
 import {
   Clock,
-  Users,
   Laptop,
   Wrench,
   GraduationCap,

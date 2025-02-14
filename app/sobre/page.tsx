@@ -203,7 +203,7 @@ const AboutPage = () => {
                         {/* Substitua pelo iframe do seu vídeo */}
                         <iframe
                             className="w-full h-full"
-                            src="SEU_LINK_DO_VIDEO"
+                            src="/video/insti-bel.mp4"
                             title="Vídeo Institucional"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -271,7 +271,7 @@ const AboutPage = () => {
 
                         <div className="flex items-center justify-center gap-8">
                             <Link
-                                href="https://facebook.com/belinformatica"
+                                href="https://www.facebook.com/profile.php?id=100090159068156"
                                 target="_blank"
                                 className="group relative"
                             >
@@ -289,7 +289,7 @@ const AboutPage = () => {
                             </Link>
 
                             <Link
-                                href="https://instagram.com/belinformatica"
+                                href="https://www.instagram.com/belinformaticaltda/"
                                 target="_blank"
                                 className="group relative"
                             >
