@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Building2, Award, HeartHandshake } from 'lucide-react';
+import { Users, Building2, Award, HeartHandshake, MapPin, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Carousel from "@/components/ui/carousel";
 
 const AboutPage = () => {
     const stats = [
@@ -32,26 +33,45 @@ const AboutPage = () => {
 
     const partners = [
         {
-            name: "Zucchetti",
-            logo: "/api/placeholder/200/80", // Substituir pela logo real
-            description: "Líder em soluções de software empresarial"
+            name: "ZUCCHETTI",
+            logo: "/images/partners/zucchetti.png", // Substituir pela logo real
+            description: "Líder em soluções de software empresarial",
+            website: "https://www.zucchettibrasil.com.br/"
         },
         {
             name: "GDOOR",
-            logo: "/api/placeholder/200/80", // Substituir pela logo real
-            description: "Especialista em sistemas de gestão"
+            logo: "/images/partners/gdoor.png",
+            description: "Especialista em sistemas de gestão",
+            website: "https://gdoor.com.br/"
         },
         {
-            name: "DIGISAT TECNOLOGIA",
-            logo: "/api/placeholder/200/80", // Substituir pela logo real
-            description: "Referência em soluções tecnológicas"
+            name: "DIGISAT",
+            logo: "/images/partners/logo-digisat.png",
+            description: "Referência em soluções tecnológicas",
+            website: "https://www.digisat.com.br/"
         },
         {
             name: "IDEALSOFT",
-            logo: "/api/placeholder/200/80", // Substituir pela logo real
-            description: "Inovação em software empresarial"
+            logo: "/images/partners/idealsoft.png",
+            description: "Inovação em software empresarial",
+            website: "https://www.idealsoft.com.br/"
         }
     ];
+
+    const slideData = [
+        {
+            src: "/images/bel1.jpg",
+        },
+        {
+
+            src: "/images/bel2.jpg",
+
+        },
+        {
+            src: "/images/bel3.jpg",
+        }
+    ]
+
 
     return (
         <div className="bg-zinc-950 min-h-screen pt-20">
@@ -74,7 +94,7 @@ const AboutPage = () => {
                         transition={{ delay: 0.1 }}
                         className="text-xl text-white/60 text-center max-w-3xl mx-auto"
                     >
-                        Há mais de duas décadas transformando empresas através da tecnologia,
+                        Há mais de uma década transformando empresas através da tecnologia,
                         com soluções inovadoras e suporte especializado.
                     </motion.p>
                 </div>
@@ -115,27 +135,33 @@ const AboutPage = () => {
                         >
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Nossa História</h2>
                             <p className="text-white/60 mb-4">
-                                Fundada com o propósito de trazer inovação e eficiência para empresas de todos os portes,
-                                a Bel Informática se estabeleceu como referência no mercado de software de gestão.
+                                Fundada em 2008, a Bel Informática iniciou sua jornada focada exclusivamente na revenda de software de automação comercial. Ao longo dos anos, expandimos nossos horizontes e nos estabelecemos como referência no mercado de tecnologia, agregando à nossa expertise a comercialização de equipamentos de informática de alta performance.
                             </p>
-                            <p className="text-white/60">
-                                Nossa jornada é marcada pelo compromisso com a excelência e pela busca constante
-                                por soluções que realmente façam a diferença no dia a dia de nossos clientes.
+                            <p className="text-white/60 mb-4">
+                                Nossa trajetória de sucesso é construída sobre o compromisso em oferecer sempre as melhores soluções tecnológicas. Em constante evolução, buscamos não apenas atender, mas superar as expectativas de nossos clientes, trazendo o que há de mais avançado em hardware e software para impulsionar seus negócios.
                             </p>
+                            <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
+                                <p className="text-white font-medium mb-2">Quer saber mais sobre a empresa ? </p>
+                                <p className="text-white/60">
+                                    <span className="font-semibold">Endereço:</span> R. Antônio Barreto, 1602 - Umarizal, Belém - PA
+                                </p>
+                                <Link
+                                    href="https://maps.google.com/?q=R. Antônio Barreto, 1602 - Umarizal, Belém - PA"
+                                    target="_blank"
+                                    className="inline-flex items-center gap-2 mt-3 text-blue-400 hover:text-blue-300 transition-colors"
+                                >
+                                    <MapPin className="w-4 h-4" />
+                                    <span>Ver no mapa</span>
+                                </Link>
+                            </div>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="relative aspect-video rounded-xl overflow-hidden"
+                            className="relative"
                         >
-                            <Image
-                                src="/api/placeholder/600/400"
-                                alt="Bel Informática História"
-                                className="w-full h-full object-cover"
-                                height={600}
-                                width={400}
-                            />
+                            <Carousel slides={slideData} />
                         </motion.div>
                     </div>
                 </div>
@@ -148,10 +174,24 @@ const AboutPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+                        className="text-3xl md:text-4xl font-bold text-white text-center mb-6"
                     >
                         Nossos Parceiros
                     </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-white/60 text-center max-w-3xl mx-auto mb-12"
+                    >
+                        Mantemos parcerias estratégicas com as principais software houses do Brasil,
+                        garantindo que nossos clientes tenham acesso às soluções mais avançadas em
+                        automação comercial. Nossa aliança com esses líderes de mercado nos permite
+                        oferecer um portfólio completo e constantemente atualizado de ferramentas
+                        que impulsionam o sucesso do seu negócio.
+                    </motion.p>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {partners.map((partner, index) => (
                             <motion.div
@@ -160,17 +200,28 @@ const AboutPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                                 viewport={{ once: true }}
-                                className="bg-zinc-900/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-colors"
+                                className="bg-zinc-900/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-colors group h-full flex flex-col"
                             >
-                                <Image
-                                    src={partner.logo}
-                                    alt={partner.name}
-                                    className="w-full h-20 object-contain mb-4"
-                                    height={100}
-                                    width={100}
-                                />
-                                <h3 className="text-xl font-semibold text-white mb-2">{partner.name}</h3>
-                                <p className="text-white/60 text-sm">{partner.description}</p>
+                                <div className="relative flex-shrink-0">
+                                    <Image
+                                        src={partner.logo}
+                                        alt={partner.name}
+                                        className="w-full h-20 object-contain mb-4"
+                                        height={100}
+                                        width={100}
+                                    />
+                                </div>
+                                <h3 className="text-xl font-semibold text-white mb-2 line-clamp-1">{partner.name}</h3>
+                                <p className="text-white/60 text-sm mb-4 flex-grow">{partner.description}</p>
+                                <Link
+                                    href={partner.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm mt-auto"
+                                >
+                                    Visite o site
+                                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </Link>
                             </motion.div>
                         ))}
                     </div>
@@ -201,19 +252,13 @@ const AboutPage = () => {
                         className="aspect-video rounded-2xl overflow-hidden bg-zinc-800"
                     >
                         {/* Substitua pelo iframe do seu vídeo */}
-                        <iframe
-                            className="w-full h-full"
-                            src="/video/insti-bel.mp4"
-                            title="Vídeo Institucional"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
+                        <iframe className='w-full h-full'
+                            src="https://www.youtube.com/embed/XeP54tZnZlE?si=Wi4tG6FyhelOpHiK" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                     </motion.div>
                 </div>
             </section>
 
-            
+
             {/* Values Section */}
             <section className="py-20 bg-zinc-900/50">
                 <div className="max-w-6xl mx-auto px-4 text-center">

@@ -12,13 +12,6 @@ const DownloadPage = () => {
       icon: <Monitor className="w-6 h-6" />,
       items: [
         {
-          name: "AnyDesk",
-          description: "Software para acesso remoto",
-          version: "7.1.13",
-          size: "3.8 MB",
-          link: "https://anydesk.com/pt/downloads/windows" // Substituir pelo link real
-        },
-        {
           name: "TeamViewer 12",
           description: "Controle remoto e reuniões online",
           version: "QS",
@@ -49,7 +42,7 @@ const DownloadPage = () => {
           name: "Instalador Automatico Certificados",
           description: "Utilize para tentar reconher e instalar certificado A3",
           version: "JAN 2025",
-          size: "198 MB",
+          size: "825 KB",
           link: "/downloads/utilitarios/SafeInstallerV2.rar"
         },
       ]

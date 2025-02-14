@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 const ContactPage = () => {
   return (
-    <div className="bg-zinc-950 min-h-screen pt-20">
-      <div className="max-w-6xl mx-auto px-4 py-20">
+    <div className="bg-zinc-950 min-h-screen flex items-center justify-center py-20" id='contact'>
+      <div className="relative w-full max-w-6xl mx-auto px-4 py-20">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.h1 

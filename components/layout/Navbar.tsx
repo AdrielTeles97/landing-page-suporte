@@ -21,7 +21,7 @@ const Navbar = () => {
   const menuItems = [
     { label: 'Início', href: '/' },
     { label: 'Sobre', href: '/sobre' },
-    { label: 'Contato', href: '/contato' },
+    { label: 'Contato', href: '#contact' },
     { label: 'Downloads', href: '/downloads' },
   ];
 
