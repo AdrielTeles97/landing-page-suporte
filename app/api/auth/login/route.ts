@@ -8,7 +8,7 @@ export async function POST(request: Request) {
         // Hardcoded authentication for now
         if (username === 'adriel' && password === '501596bel') {
             // Create a session cookie
-            cookies().set('admin-token', 'true', {
+            (await cookies()).set('admin-token', 'true', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
