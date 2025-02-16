@@ -1,8 +1,7 @@
-// components/sections/ProductsSection.tsx
 "use client";
 
 import React from "react";
-import { Store, Building, ShoppingBag } from "lucide-react";
+import { Computer, Settings, Store, CloudCog, Database } from "lucide-react";
 import { motion } from "framer-motion";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 
@@ -10,22 +9,46 @@ const ProductsSection = () => {
   const products = [
     {
       icon: <Store className="w-8 h-8 text-cyan-500" />,
-      title: "Varejo",
-      description: "Sistema completo para gestão de lojas, controle de estoque e vendas",
-      link: "/produtos/varejo",
+      title: "DIGISAT COMERCIAL",
+      description: "Sistema completo para automação comercial com foco em vendas e gestão do dia a dia",
+      link: "/produtos/digisat-comercial",
     },
     {
-      icon: <Building className="w-8 h-8 text-cyan-500" />,
-      title: "Indústria",
-      description: "ERP focado em processos industriais e controle de produção",
-      link: "/produtos/industria",
+      icon: <Settings className="w-8 h-8 text-cyan-500" />,
+      title: "DIGISAT GERENCIAL",
+      description: "Solução avançada para gestão empresarial com recursos completos de ERP",
+      link: "/produtos/digisat-gerencial",
     },
     {
-      icon: <ShoppingBag className="w-8 h-8 text-cyan-500" />,
-      title: "Atacado",
-      description: "Solução para distribuidoras e empresas de atacado",
-      link: "/produtos/atacado",
-    }
+      icon: <Computer className="w-8 h-8 text-cyan-500" />,
+      title: "GDOOR MEI",
+      description: "Sistema simplificado ideal para Microempreendedores Individuais",
+      link: "/produtos/gdoor-mei",
+    },
+    {
+      icon: <Database className="w-8 h-8 text-cyan-500" />,
+      title: "GDOOR PRO",
+      description: "Solução profissional com recursos avançados para gestão comercial",
+      link: "/produtos/gdoor-pro",
+    },
+    {
+      icon: <Store className="w-8 h-8 text-cyan-500" />,
+      title: "GDOOR SLIM",
+      description: "Versão otimizada para pequenos negócios com funcionalidades essenciais",
+      link: "/produtos/gdoor-slim",
+    },
+    {
+      icon: <CloudCog className="w-8 h-8 text-cyan-500" />,
+      title: "GDOOR WEB",
+      description: "Sistema em nuvem para gestão comercial com acesso de qualquer lugar",
+      link: "/produtos/gdoor-web",
+    },
+    {
+      icon: <Settings className="w-8 h-8 text-cyan-500" />,
+      title: "SHOP CONTROL9",
+      description: "Sistema completo para controle e gestão do seu negócio",
+      link: "/produtos/shop-control9",
+    },
   ];
 
   return (
@@ -43,7 +66,7 @@ const ProductsSection = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
-            Software para cada segmento
+            Nossas Soluções em Automação
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -52,7 +75,7 @@ const ProductsSection = () => {
             viewport={{ once: true }}
             className="text-white/70"
           >
-            Soluções especializadas para seu negócio crescer
+            Escolha o sistema ideal para as necessidades do seu negócio
           </motion.p>
         </div>
 
