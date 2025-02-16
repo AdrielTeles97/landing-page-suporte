@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { audio } from 'framer-motion/client';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +39,7 @@ const Navbar = () => {
                 alt="Suporte Bel Informática"
                 width={80} // ajuste conforme o tamanho real da sua logo
                 height={80}
-                className="w-40 h-20 object-contain"
+                className="object-contain"
                 priority // para carregar a logo como prioritária
               />
             </Link>

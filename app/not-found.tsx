@@ -78,12 +78,6 @@ const NotFound = () => {
             <Home className="w-5 h-5 mr-2" />
             Voltar para o início
           </Link>
-          <Link
-            href="/contato"
-            className="inline-flex items-center px-6 py-3 rounded-xl bg-zinc-800 text-white font-medium hover:bg-zinc-700 transition-colors"
-          >
-            Falar com suporte
-          </Link>
         </motion.div>
 
         {/* Easter Egg - Aparece depois de um tempo */}

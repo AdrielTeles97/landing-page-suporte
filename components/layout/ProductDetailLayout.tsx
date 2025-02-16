@@ -152,14 +152,13 @@ const FeatureCard = ({ title, description }: Feature) => (
 
 const FeaturesSection = ({ features }: { features: Feature[] }) => (
   <section className="relative py-32 overflow-hidden">
-    <GradientBackground />
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        viewport={{ once: true }}  // Mais simples, sem amount ou fallback
         className="text-center mb-24"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-gradient-blue mb-6">
@@ -176,8 +175,8 @@ const FeaturesSection = ({ features }: { features: Feature[] }) => (
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.1, }}
           >
             <FeatureCard {...feature} />
           </motion.div>
@@ -189,7 +188,6 @@ const FeaturesSection = ({ features }: { features: Feature[] }) => (
 
 const BenefitsSection = ({ benefits }: { benefits: string[] }) => (
   <section className="relative py-32 overflow-hidden">
-    <GradientBackground />
     
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <motion.div
@@ -233,14 +231,12 @@ const BenefitsSection = ({ benefits }: { benefits: string[] }) => (
 
 const RequirementsSection = ({ requirements }: { requirements: string[] }) => (
   <section className="relative py-32 overflow-hidden">
-    <GradientBackground />
-    
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}  // Mais simples, sem amount ou fallback
         className="text-center mb-24"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-gradient-blue mb-6">
@@ -253,19 +249,19 @@ const RequirementsSection = ({ requirements }: { requirements: string[] }) => (
 
       <motion.div
         className="max-w-4xl mx-auto rounded-2xl p-8 bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 backdrop-blur-sm"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 1000, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
         <ul className="space-y-6">
           {requirements.map((req, index) => (
             <motion.li
               key={index}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
+              viewport={{ once: true, }}
               className="flex items-start gap-4"
             >
               <CheckCircle2 className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
@@ -294,7 +290,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1, fallback: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gradient-blue mb-8">
             Ficou com alguma dúvida?

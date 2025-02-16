@@ -1,3 +1,4 @@
+// app/providers.tsx
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
@@ -18,30 +19,44 @@ interface AlertContextType {
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const [alert, setAlert] = useState<SystemAlert | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const fetchAlert = async () => {
       try {
         const response = await fetch('/api/alerts');
+        if (!response.ok) return;
+        
         const data = await response.json();
         if (data && data.active) {
           setAlert({
-            type: data.type,
-            message: data.message,
-            active: data.active
+            type: data.type || 'info',
+            message: data.message || '',
+            active: true
           });
         }
       } catch (error) {
-        console.error('Erro ao buscar alerta:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Erro ao buscar alertas:', error);
+        }
       }
     };
 
     fetchAlert();
-    // Verifica a cada 5 minutos
     const interval = setInterval(fetchAlert, 5 * 60 * 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <AlertContext.Provider value={{ alert, setAlert }}>
