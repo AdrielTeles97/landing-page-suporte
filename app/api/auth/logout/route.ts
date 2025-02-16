@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 export async function POST() {
     try {
         // Clear the admin token cookie
-        cookies().delete('admin-token');
+        (await cookies()).delete('admin-token');
 
         return NextResponse.json({
             success: true,
