@@ -9,6 +9,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 // Interfaces
 interface Feature {
@@ -56,10 +57,12 @@ const SystemPreviewCard = ({ imagePath, name }: { imagePath: string; name: strin
       >
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        <img
+        <Image
           src={imagePath}
           alt={name}
           className="rounded-xl w-full h-auto"
+          width={500}
+          height={500}
         />
       </motion.div>
     </motion.div>
