@@ -5,10 +5,13 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,17 +21,32 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleContactClick = (e: React.MouseEvent) => {
+    // Se estiver na página inicial, faça scroll
+    if (pathname === '/') {
+      e.preventDefault();
+      const contactSection = document.getElementById('contact');
+      contactSection?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Se estiver em outra página, redirecione para a página inicial com a âncora
+      router.push('/#contact');
+    }
+  };
+
   const menuItems = [
     { label: 'Início', href: '/' },
     { label: 'Sobre', href: '/sobre' },
-    { label: 'Contato', href: '#contact' },
+    { 
+      label: 'Contato', 
+      href: '/#contact', 
+      onClick: handleContactClick 
+    },
     { label: 'Downloads', href: '/downloads' },
     { label: 'Login', href: '/admin/login' },
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-zinc-950/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-      }`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-zinc-950/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -37,10 +55,10 @@ const Navbar = () => {
               <Image
                 src="/images/logo-bel.png"
                 alt="Suporte Bel Informática"
-                width={80} // ajuste conforme o tamanho real da sua logo
+                width={80}
                 height={80}
                 className="object-contain"
-                priority // para carregar a logo como prioritária
+                priority
               />
             </Link>
           </div>
@@ -51,14 +69,12 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={item.onClick}
                 className="text-white/70 hover:text-white transition-colors text-sm font-medium"
               >
                 {item.label}
               </Link>
             ))}
-            {/* <button className="px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors">
-              Baixar Acesso
-            </button> */}
           </div>
 
           {/* Mobile menu button */}
@@ -88,15 +104,15 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => {
+                    setIsMenuOpen(false);
+                    if (item.onClick) item.onClick(e as React.MouseEvent);
+                  }}
                   className="block py-3 text-white/70 hover:text-white transition-colors text-sm font-medium"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              {/* <button className="w-full mt-2 px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors">
-                Baixar Acesso
-              </button> */}
             </div>
           </motion.div>
         )}
