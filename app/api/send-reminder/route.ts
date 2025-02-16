@@ -2,25 +2,25 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { createClient } from '@supabase/supabase-js';
 
-// Ensure you have these environment variables set
+// Variáveis de ambiente necessárias
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Initialize Supabase client
+// Inicializa o cliente Supabase
 const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
-// Initialize Resend with your API key
+// Inicializa o Resend com sua API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
     try {
-        // Parse the request body
+        // Parse do corpo da requisição
         const requestBody = await request.json();
         console.log('Request Body:', requestBody);
 
         const { customerId, email } = requestBody;
 
-        // Validate input
+        // Validação dos dados de entrada
         if (!customerId || !email) {
             return NextResponse.json(
                 { error: 'Customer ID and email are required' },
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
             );
         }
 
-        // Fetch customer details from Supabase
+        // Buscar detalhes do cliente no Supabase
         const { data: customerData, error: customerError } = await supabase
             .from('customers')
             .select('company_name, next_payment_date, payment_status')
@@ -36,16 +36,16 @@ export async function POST(request: Request) {
             .single();
 
         if (customerError || !customerData) {
-            console.error('Customer fetch error:', customerError);
+            console.error('Erro ao buscar cliente:', customerError);
             return NextResponse.json(
                 { error: 'Cliente não encontrado' },
                 { status: 404 }
             );
         }
 
-        // Send email using Resend with your verified domain
-        const { data, error } = await resend.emails.send({
-            from: 'suporte@transacional.suportebel.com.br', // Use your verified domain
+        // Envio de e-mail usando Resend
+        const emailResponse = await resend.emails.send({
+            from: 'suporte@transacional.suportebel.com.br', // Use seu domínio verificado
             to: email,
             subject: 'Lembrete de Pagamento',
             html: `
@@ -56,19 +56,17 @@ export async function POST(request: Request) {
                         </h1>
                         
                         <p style="color: #555; line-height: 1.6;">
-                            Olá, <strong>${customerData.company_name}</strong>,
+                            Olá, <strong>${customerData.company_name}</strong>!
                         </p>
 
                         ${customerData.payment_status === 'up_to_date' 
-                            ? `
-                            <div style="background-color: #e6f3e6; border-left: 4px solid #4CAF50; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                            ? `<div style="background-color: #e6f3e6; border-left: 4px solid #4CAF50; padding: 15px; margin: 20px 0; border-radius: 4px;">
                                 <p style="color: #2E7D32; margin: 0;">
                                     Seu pagamento está em dia. Próximo vencimento: 
                                     <strong>${new Date(customerData.next_payment_date).toLocaleDateString()}</strong>
                                 </p>
                             </div>`
-                            : `
-                            <div style="background-color: #ffebee; border-left: 4px solid #F44336; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                            : `<div style="background-color: #ffebee; border-left: 4px solid #F44336; padding: 15px; margin: 20px 0; border-radius: 4px;">
                                 <p style="color: #D32F2F; margin: 0;">
                                     <strong>Alerta de Pagamento Pendente</strong><br>
                                     Identificamos que sua fatura está vencida desde 
@@ -107,17 +105,18 @@ export async function POST(request: Request) {
             `
         });
 
-        if (error) {
-            console.error('Resend email error:', error);
+        // Verificação adicional para garantir que 'data' existe
+        if (!emailResponse || !emailResponse.data) {
+            console.error('Erro ao enviar e-mail:', emailResponse?.error);
             return NextResponse.json(
-                { error: 'Erro ao enviar e-mail', details: error },
+                { error: 'Erro ao enviar e-mail', details: emailResponse?.error },
                 { status: 500 }
             );
         }
 
         return NextResponse.json({ 
             success: true, 
-            messageId: data.id 
+            messageId: emailResponse.data.id 
         });
 
     } catch (error) {
