@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://suportebel.com.br/sitemap.xml
+
+# Hosts
+Host: https://suportebel.com.br

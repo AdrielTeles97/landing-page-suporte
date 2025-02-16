@@ -3,16 +3,18 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useToast } from "@/hooks/use-toast";
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const { toast } = useToast();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setIsLoading(true);
 
         try {
             const response = await fetch('/api/auth/login', {
@@ -23,20 +25,42 @@ export default function LoginPage() {
                 body: JSON.stringify({ username, password }),
             });
 
-            if (response.ok) {
-                router.push('/admin/alerts');
+            const result = await response.json();
+
+            if (result.success) {
+                // Success toast
+                toast({
+                    title: "Login Bem-sucedido",
+                    description: "Você será redirecionado para o painel administrativo.",
+                    variant: "default"
+                });
+
+                // Redirect to dashboard or alerts
+                router.push(result.redirectUrl || '/admin/dashboard');
             } else {
-                setError('Credenciais inválidas');
+                // Error toast
+                toast({
+                    title: "Erro de Login",
+                    description: result.message || "Credenciais inválidas",
+                    variant: "destructive"
+                });
             }
         } catch (err) {
-            setError('Erro ao fazer login');
+            // Network error toast
+            toast({
+                title: "Erro de Conexão",
+                description: "Não foi possível realizar o login. Verifique sua conexão.",
+                variant: "destructive"
+            });
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center">
             <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_50%,rgba(29,78,216,0.05),transparent)]" />
-
+            
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -46,12 +70,6 @@ export default function LoginPage() {
                     <h2 className="text-2xl font-bold text-gradient-blue mb-6 text-center">
                         Login Administrativo
                     </h2>
-
-                    {error && (
-                        <div className="bg-red-500/10 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg mb-6">
-                            {error}
-                        </div>
-                    )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
@@ -64,6 +82,7 @@ export default function LoginPage() {
                                 onChange={(e) => setUsername(e.target.value)}
                                 className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                                 required
+                                disabled={isLoading}
                             />
                         </div>
 
@@ -77,14 +96,16 @@ export default function LoginPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
                                 required
+                                disabled={isLoading}
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={isLoading}
                         >
-                            Entrar
+                            {isLoading ? 'Carregando...' : 'Entrar'}
                         </button>
                     </form>
                 </div>

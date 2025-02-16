@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { audio } from 'framer-motion/client';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,6 +23,7 @@ const Navbar = () => {
     { label: 'Sobre', href: '/sobre' },
     { label: 'Contato', href: '#contact' },
     { label: 'Downloads', href: '/downloads' },
+    { label: 'Login', href: '/admin/login' },
   ];
 
   return (

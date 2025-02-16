@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Computer, Settings, Store, CloudCog, Database } from "lucide-react";
+import { Settings, Store, CloudCog, Database } from "lucide-react";
 import { motion } from "framer-motion";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 
@@ -18,12 +18,6 @@ const ProductsSection = () => {
       title: "DIGISAT GERENCIAL",
       description: "Solução avançada para gestão empresarial com recursos completos de ERP",
       link: "/produtos/digisat-gerencial",
-    },
-    {
-      icon: <Computer className="w-8 h-8 text-cyan-500" />,
-      title: "GDOOR MEI",
-      description: "Sistema simplificado ideal para Microempreendedores Individuais",
-      link: "/produtos/gdoor-mei",
     },
     {
       icon: <Database className="w-8 h-8 text-cyan-500" />,

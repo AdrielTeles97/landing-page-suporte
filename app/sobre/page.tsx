@@ -10,7 +10,7 @@ import Carousel from "@/components/ui/carousel";
 const AboutPage = () => {
     const stats = [
         {
-            number: "20+",
+            number: "10+",
             label: "Anos de mercado",
             icon: <Building2 className="w-6 h-6 text-blue-500" />
         },
@@ -25,7 +25,7 @@ const AboutPage = () => {
             icon: <HeartHandshake className="w-6 h-6 text-blue-500" />
         },
         {
-            number: "24/7",
+            number: "8/5",
             label: "Suporte especializado",
             icon: <Award className="w-6 h-6 text-blue-500" />
         }

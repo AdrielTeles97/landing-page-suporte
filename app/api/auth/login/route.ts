@@ -5,27 +5,39 @@ export async function POST(request: Request) {
     try {
         const { username, password } = await request.json();
 
-        // Aqui você pode adicionar sua própria lógica de autenticação
-        // Por enquanto vamos usar um usuário fixo
+        // Hardcoded authentication for now
         if (username === 'adriel' && password === '501596bel') {
-            // Criar um cookie de sessão
+            // Create a session cookie
             cookies().set('admin-token', 'true', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'strict',
-                maxAge: 60 * 60 * 24 // 24 horas
+                maxAge: 60 * 60 * 24 // 24 hours
             });
 
-            return NextResponse.json({ success: true });
+            // Return success and explicit dashboard redirect
+            return NextResponse.json({ 
+                success: true,
+                message: 'Login realizado com sucesso',
+                redirectUrl: '/admin/dashboard'
+            });
         }
 
+        // Authentication failed
         return NextResponse.json(
-            { error: 'Credenciais inválidas' },
+            { 
+                success: false, 
+                message: 'Credenciais inválidas' 
+            },
             { status: 401 }
         );
     } catch (error) {
+        console.error('Erro no login:', error);
         return NextResponse.json(
-            { error: 'Erro interno' },
+            { 
+                success: false, 
+                message: 'Erro interno do servidor' 
+            },
             { status: 500 }
         );
     }
