@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     AlertCircle,
@@ -11,7 +12,7 @@ import {
     ArrowLeft
 } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from 'react';
+
 
 export default function AdminDashboard() {
     const { toast } = useToast();
@@ -58,7 +59,7 @@ export default function AdminDashboard() {
             description: "Aqui você pode gerenciar diferentes aspectos do sistema.",
             variant: "default"
         });
-    }, []);
+    }, [toast]);
 
     const dashboardItems = [
         {

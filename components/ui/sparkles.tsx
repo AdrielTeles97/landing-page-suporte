@@ -10,7 +10,7 @@ export const Sparkles = ({
 }: {
     children: React.ReactNode;
     className?: string;
-    [key: string]: any;
+    [key: string]: unknown;
 }) => {
     const [sparkles, setSparkles] = useState<Array<{ id: number; color: string; size: number; style: { top: string; left: string; } }>>([]);
     const ref = useRef<HTMLDivElement>(null);

@@ -24,7 +24,6 @@ export default function CustomersPage() {
     const { toast } = useToast();
     const [customers, setCustomers] = useState<Customer[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCustomer, setSelectedCustomer] = useState<Customer | undefined>();
 
@@ -161,7 +160,7 @@ export default function CustomersPage() {
                 variant: "destructive"
             });
         } finally {
-            setLoading(false);
+            
         }
     };
 
@@ -277,3 +276,4 @@ export default function CustomersPage() {
         </div>
     );
 }
+
