@@ -35,7 +35,7 @@ export default function DigisatGerencialPage() {
             "Espaço em Disco: 20GB de espaço livre",
             "Rede: Conexão estável para recursos online"
         ],
-        imagePath: "/images/produtos/digisat/DigisatGerencial.png"
+        imagePath: "/images/produtos/digisat/Gerencial.png"
     };
 
     return <ProductDetailLayout product={productData} />;
