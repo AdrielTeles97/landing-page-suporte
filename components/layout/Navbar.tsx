@@ -1,3 +1,4 @@
+// Navbar.tsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -10,26 +11,37 @@ import { useRouter, usePathname } from 'next/navigation';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isMounted) {
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 20);
+      };
+      
+      window.addEventListener('scroll', handleScroll);
+      // Verificar scroll inicial
+      handleScroll();
+      
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [isMounted]);
+
   const handleContactClick = (e: React.MouseEvent) => {
-    // Se estiver na página inicial, faça scroll
-    if (pathname === '/') {
-      e.preventDefault();
-      const contactSection = document.getElementById('contact');
-      contactSection?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Se estiver em outra página, redirecione para a página inicial com a âncora
-      router.push('/#contact');
+    if (typeof window !== 'undefined') {
+      if (pathname === '/') {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        contactSection?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        router.push('/#contact');
+      }
     }
   };
 
@@ -41,9 +53,13 @@ const Navbar = () => {
       href: '/#contact', 
       onClick: handleContactClick 
     },
-    { label: 'Downloads', href: '/downloads' },
-    { label: 'Login', href: '/admin/login' },
+    { label: 'Downloads', href: '/downloads' }
   ];
+
+  // Não renderizar nada até o componente estar montado
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-zinc-950/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'}`}>

@@ -1,17 +1,28 @@
+// Footer.tsx
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setYear(new Date().getFullYear().toString());
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <footer className="bg-zinc-950 border-t border-zinc-900">
       <div className="max-w-6xl mx-auto py-8 px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-white/60 text-sm text-center md:text-left">
-            © {currentYear} Bel Informática LTDA. Todos os direitos reservados.
+            © {year} Bel Informática LTDA. Todos os direitos reservados.
           </div>
           
           <div className="text-white/60 text-sm flex items-center gap-2">
