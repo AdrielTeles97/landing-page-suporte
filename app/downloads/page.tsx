@@ -25,11 +25,18 @@ const DownloadPage = () => {
       icon: <Settings className="w-6 h-6" />,
       items: [
         {
-          name: "Envio de Arquivos XML Automático",
+          name: "Envio de Arquivos XML",
           description: "Envie os arquivo xml do sistema digisat de forma-automática",
           version: "1.0.0",
           size: "15.2 MB",
           link: "/downloads/utilitarios/Envio_Arquivo_XML_Instalador.exe"
+        },
+        {
+          name: "Envio de Arquivos XML 2.0",
+          description: "Envie os arquivo xml do sistema digisat de forma-automática.",
+          version: "2.0.0",
+          size: "15.2 MB",
+          link: "/downloads/utilitarios/EnvioArquivosXML_Setup2.0.0.exe"
         },
         {
           name: "Cadeia de Certificados",
@@ -45,6 +52,7 @@ const DownloadPage = () => {
           size: "825 KB",
           link: "/downloads/utilitarios/SafeInstallerV2.rar"
         },
+        
       ]
     },
     {
