@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Search, ChevronRight, Tag, Box, Printer, ShieldCheck, Monitor, Server, Database } from 'lucide-react';
+import { BookOpen, Search, ChevronRight, Tag, Box, Printer, Monitor, Database } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const SolucoesPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
