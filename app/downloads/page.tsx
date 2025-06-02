@@ -17,27 +17,21 @@ const DownloadPage = () => {
           version: "QS",
           size: "12.1 MB",
           link: "/downloads/acesso-remoto/TeamViewerQS.exe"
-        }
+        },
+        {
+          name: "RustDestk ",
+          description: "Controle remoto e reuniões online",
+          version: "1.3.8",
+          size: "21.2 MB",
+          link: "/downloads/acesso-remoto/rustdesk-1.3.8.exe"
+        },
+
       ]
     },
     {
       category: "Utilitários",
       icon: <Settings className="w-6 h-6" />,
       items: [
-        {
-          name: "Envio de Arquivos XML",
-          description: "Envie os arquivo xml do sistema digisat de forma-automática",
-          version: "1.0.0",
-          size: "15.2 MB",
-          link: "/downloads/utilitarios/Envio_Arquivo_XML_Instalador.exe"
-        },
-        {
-          name: "Envio de Arquivos XML 2.0",
-          description: "Envie os arquivo xml do sistema digisat de forma-automática.",
-          version: "2.0.0",
-          size: "15.2 MB",
-          link: "/downloads/utilitarios/EnvioArquivosXML_Setup2.0.0.exe"
-        },
         {
           name: "Cadeia de Certificados",
           description: "Conjunto de cadeias de certificados digitais",
