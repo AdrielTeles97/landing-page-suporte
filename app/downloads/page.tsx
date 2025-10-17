@@ -42,9 +42,9 @@ const DownloadPage = () => {
         {
           name: "Envio de Arquivos XML",
           description: "Versão atual da aplicação para envio de arquivos XMLs suporte Bel Informática",
-          version: "2.0.0",
-          size: "16.578 MB",
-          link: "/downloads/utilitarios/EnvioArquivosXML_Setup_v2.0.0.rar"
+          version: "1.0.0",
+          size: "22.734 MB",
+          link: "/downloads/utilitarios/EnvioArquivosXML_Setup_v1.0.0.rar"
         },
         {
           name: "Instalador Automatico Certificados",
