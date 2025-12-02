@@ -16,7 +16,7 @@ const DownloadPage = () => {
           description: "Controle remoto e reuniões online",
           version: "QS",
           size: "12.1 MB",
-          link: "/downloads/acesso-remoto/TeamViewerQS.exe"
+          link: "/downloads/acesso-remoto/TeamViewerQS_belinformatica.exe"
         },
         {
           name: "RustDestk ",
