@@ -30,8 +30,12 @@ const AnnouncementBanner = () => {
         if (!mounted) return
 
         // Buscar configuração do banner da API externa (PHP)
-        const apiUrl =
-            process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL || '/api/announcement'
+        const apiUrl = process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL
+
+        // Só busca se a API externa estiver configurada
+        if (!apiUrl) {
+            return
+        }
 
         fetch(apiUrl)
             .then(res => res.json())

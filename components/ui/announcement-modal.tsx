@@ -30,21 +30,24 @@ const AnnouncementModal = () => {
     useEffect(() => {
         if (!mounted) return
 
-        const apiUrl =
-            (process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL || '').replace(
-                'announcements.php',
-                'modal.php'
-            ) || '/api/modal'
+        const apiUrl = process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL
 
-        fetch(apiUrl)
+        // Só busca se a API externa estiver configurada
+        if (!apiUrl) {
+            return
+        }
+
+        const modalUrl = apiUrl.replace('announcements.php', 'modal.php')
+
+        fetch(modalUrl)
             .then(res => res.json())
             .then((data: ModalConfig) => {
                 if (data.enabled) {
                     // Converter URL relativa para absoluta
                     if (data.imageUrl && data.imageUrl.startsWith('./')) {
-                        const baseUrl = apiUrl.substring(
+                        const baseUrl = modalUrl.substring(
                             0,
-                            apiUrl.lastIndexOf('/')
+                            modalUrl.lastIndexOf('/')
                         )
                         data.imageUrl = baseUrl + data.imageUrl.substring(1)
                     }
