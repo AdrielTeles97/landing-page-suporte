@@ -170,7 +170,6 @@ export default function AvisoG6() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </>
     )
 }
