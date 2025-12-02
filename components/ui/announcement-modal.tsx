@@ -40,9 +40,14 @@ const AnnouncementModal = () => {
         const modalUrl = apiUrl.replace('announcements.php', 'modal.php')
 
         fetch(modalUrl)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('API not available')
+                }
+                return res.json()
+            })
             .then((data: ModalConfig) => {
-                if (data.enabled) {
+                if (data && data.enabled) {
                     // Converter URL relativa para absoluta
                     if (data.imageUrl && data.imageUrl.startsWith('./')) {
                         const baseUrl = modalUrl.substring(
@@ -72,8 +77,9 @@ const AnnouncementModal = () => {
                     }
                 }
             })
-            .catch(() => {
+            .catch(err => {
                 // Silently fail
+                console.log('Modal API not available:', err.message)
             })
     }, [mounted])
 

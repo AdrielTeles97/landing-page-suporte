@@ -38,9 +38,14 @@ const AnnouncementBanner = () => {
         }
 
         fetch(apiUrl)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('API not available')
+                }
+                return res.json()
+            })
             .then((data: AnnouncementConfig) => {
-                if (data.enabled) {
+                if (data && data.enabled) {
                     // Verificar se o usuário já fechou este banner específico
                     const bannerId = data.message.substring(0, 50) // ID baseado na mensagem
                     const dismissed = localStorage.getItem(
@@ -52,8 +57,9 @@ const AnnouncementBanner = () => {
                     }
                 }
             })
-            .catch(() => {
+            .catch(err => {
                 // Silently fail if API is not available
+                console.log('Banner API not available:', err.message)
             })
     }, [mounted])
 
