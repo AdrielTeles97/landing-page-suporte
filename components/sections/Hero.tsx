@@ -64,19 +64,11 @@ const Hero = () => {
                         className="mt-8 flex flex-col sm:flex-row gap-4 justify-center px-4"
                     >
                         <Link
-                            href="https://anydesk.com/pt/downloads/thank-you?dv=win_exe"
-                            target="_blank"
-                            className="group px-6 py-3 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition-all flex items-center justify-center gap-2"
-                        >
-                            Baixar AnyDesk
-                            <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-                        </Link>
-                        <Link
-                            href="/downloads/acesso-remoto/rustdesk-1.3.8.exe"
-                            className="group px-6 py-3 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition-all flex items-center justify-center gap-2"
+                            href="/downloads/acesso-remoto/suportebelinformatica.exe"
+                            className="group px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition-all flex items-center justify-center gap-2"
                             download
                         >
-                            Baixar RustDesk
+                            HoptoDesk
                             <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
                         </Link>
                     </motion.div>
