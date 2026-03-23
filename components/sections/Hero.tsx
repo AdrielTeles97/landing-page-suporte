@@ -64,7 +64,7 @@ const Hero = () => {
                         className="mt-8 flex flex-col sm:flex-row gap-4 justify-center px-4"
                     >
                         <Link
-                            href="https://anydesk.com/pt/downloads/thank-you?dv=win_exe"
+                            href="https://my.anydesk.com/v2/api/v2/custom-clients/downloads/public/DZYDVMD3WVSU/SuporteBel.msi"
                             className="group px-6 py-3 rounded-lg bg-[rgb(48,106,178)] text-white font-medium hover:bg-[rgb(48,106,158)] transition-all flex items-center justify-center gap-2"
                             download
                         >
